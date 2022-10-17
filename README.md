@@ -73,7 +73,7 @@ Classes that you should modify:
 	- `TimestampMatrix`: class to maintain the acknowledgment matrix of timestamps
 	
 2. package `recipes_service.tsae.sessions`:
-  - `TSAESessionOriginatorSide`: Originator protocol for TSAE.
+	- `TSAESessionOriginatorSide`: Originator protocol for TSAE.
 	- `TSAESessionPartnerSide`: Partner's protocol for TSAE.
 
 3. package `recipes_service`:
