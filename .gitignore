@@ -26,3 +26,9 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+
+# Project related
+lsimLogs/
+attachLicense.sh
+license.txt
+
