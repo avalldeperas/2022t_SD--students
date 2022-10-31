@@ -88,8 +88,9 @@ public class TimestampVector implements Serializable{
 	 * received.
 	 */
 	public Timestamp getLast(String node){
-		// TODO: add this to the Document informer
-		return this.timestampVector.getOrDefault(node, null);
+
+		// return generated automatically. Remove it when implementing your solution 
+		return null;
 	}
 	
 	/**
