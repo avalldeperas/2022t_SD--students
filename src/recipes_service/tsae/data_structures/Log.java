@@ -72,10 +72,14 @@ public class Log implements Serializable{
 	 * @return true if op is inserted, false otherwise.
 	 */
 	public boolean add(Operation op){
-		// ....
+		LSimLogger.log(Level.TRACE, "Adding operation: " + op);
 		
-		// return generated automatically. Remove it when implementing your solution 
-		return false;
+		List<Operation> operationList = this.log.get(op.getTimestamp().getHostid());		
+		operationList.add(op);
+		
+		LSimLogger.log(Level.TRACE, "Correctly added Timestamp for hostId: " + op.getTimestamp().getHostid());
+
+		return true; 
 	}
 	
 	/**
@@ -107,9 +111,24 @@ public class Log implements Serializable{
 	 */
 	@Override
 	public boolean equals(Object obj) {
+		if (obj == null) 
+            return false;
+        if (obj.getClass() != this.getClass()) 
+            return false;
+        
+        final Log other = (Log) obj;
+		if (log == null) 
+			return other.log == null;
+		if (log.size() != other.log.size())
+			return false;
 		
-		// return generated automatically. Remove it when implementing your solution 
-		return false;
+		boolean equal = true;
+		for (Iterator<String> it = log.keySet().iterator(); it.hasNext() && equal; ){
+			String rcp = it.next();
+			equal = log.get(rcp).equals(other.log.get(rcp));
+		}
+		
+		return equal;
 	}
 
 	/**
