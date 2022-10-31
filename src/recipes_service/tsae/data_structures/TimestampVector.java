@@ -122,19 +122,15 @@ public class TimestampVector implements Serializable{
         final TimestampVector other = (TimestampVector) obj;
         if (timestampVector == null) 
 			return other.timestampVector == null;
-		else {
-			if (timestampVector.size() != other.timestampVector.size())
-				return false;
-			
-			boolean equal = true;
-			for (Iterator<String> it = timestampVector.keySet().iterator(); it.hasNext() && equal; ){
-				String rcp = it.next();
-				equal = timestampVector.get(rcp).equals(other.timestampVector.get(rcp));
-				if (!equal){
-				}
-			}
-			return equal;
+		if (timestampVector.size() != other.timestampVector.size())
+			return false;
+		
+		boolean equal = true;
+		for (Iterator<String> it = timestampVector.keySet().iterator(); it.hasNext() && equal; ){
+			String rcp = it.next();
+			equal = timestampVector.get(rcp).equals(other.timestampVector.get(rcp));
 		}
+		return equal;
 	}
 
 	/**
