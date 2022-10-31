@@ -130,6 +130,7 @@ public class TimestampVector implements Serializable{
 			String rcp = it.next();
 			equal = timestampVector.get(rcp).equals(other.timestampVector.get(rcp));
 		}
+		
 		return equal;
 	}
 
