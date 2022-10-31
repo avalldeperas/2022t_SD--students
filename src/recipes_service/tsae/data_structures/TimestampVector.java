@@ -119,14 +119,10 @@ public class TimestampVector implements Serializable{
         if (obj.getClass() != this.getClass()) 
             return false;
 
-        // TODO: check this assertion if it works or not.
         final TimestampVector other = (TimestampVector) obj;
-        if (timestampVector == null) {
-			if (other.timestampVector != null)
-				return false;
-			else 
-				return true;
-		} else {
+        if (timestampVector == null) 
+			return other.timestampVector == null;
+		else {
 			if (timestampVector.size() != other.timestampVector.size())
 				return false;
 			
