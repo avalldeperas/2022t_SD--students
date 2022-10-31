@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import edu.uoc.dpcs.lsim.logger.LoggerManager.Level;
@@ -67,7 +68,10 @@ public class TimestampVector implements Serializable{
 	public void updateTimestamp(Timestamp timestamp){
 		LSimLogger.log(Level.TRACE, "Updating the TimestampVectorInserting with the timestamp: "+timestamp);
 
-		// ...
+		if (Objects.nonNull(timestamp)) {
+			this.timestampVector.replace(timestamp.getHostid(), timestamp);
+			LSimLogger.log(Level.TRACE, "Correctly updated Timestamp for host id " + timestamp.getHostid());
+		}
 	}
 	
 	/**
@@ -84,9 +88,8 @@ public class TimestampVector implements Serializable{
 	 * received.
 	 */
 	public Timestamp getLast(String node){
-		
-		// return generated automatically. Remove it when implementing your solution 
-		return null;
+		// TODO: add this to the Document informer
+		return this.timestampVector.getOrDefault(node, null);
 	}
 	
 	/**
@@ -111,9 +114,31 @@ public class TimestampVector implements Serializable{
 	 * equals
 	 */
 	public boolean equals(Object obj){
-		
-		// return generated automatically. Remove it when implementing your solution 
-		return false;
+		if (obj == null) 
+            return false;
+        if (obj.getClass() != this.getClass()) 
+            return false;
+
+        // TODO: check this assertion if it works or not.
+        final TimestampVector other = (TimestampVector) obj;
+        if (timestampVector == null) {
+			if (other.timestampVector != null)
+				return false;
+			else 
+				return true;
+		} else {
+			if (timestampVector.size() != other.timestampVector.size())
+				return false;
+			
+			boolean equal = true;
+			for (Iterator<String> it = timestampVector.keySet().iterator(); it.hasNext() && equal; ){
+				String rcp = it.next();
+				equal = timestampVector.get(rcp).equals(other.timestampVector.get(rcp));
+				if (!equal){
+				}
+			}
+			return equal;
+		}
 	}
 
 	/**
